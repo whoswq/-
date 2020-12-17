@@ -2,7 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from scipy.optimize import curve_fit
 
-f = open("experiment data/s_11716.txt", mode="r")
+f = open("1.txt", mode="r")
 # 第一个参数是你要打开的文件，可以使用相对路径
 lines = f.readlines()
 f.close()
@@ -47,7 +47,7 @@ def func_s(x, a, I):
     I: 最大光强-参数
     x减去的是最大光强处的坐标，稍微改动就可以避免分母为零
     """
-    u = np.pi * a * ((x - 18.9499) / 663) / 632.8 * 10 ** 3
+    u = np.pi * a * ((x - 11.996) / 663) / 632.8 * 10 ** 3
     return I * (np.sin(u) / u)**(2)
 
 
@@ -76,5 +76,5 @@ plt.legend()
 plt.xlabel("coordinate(mm)")
 plt.ylabel("")
 plt.axhline(y=0, ls="--", c="black", linewidth=0.6)  # 显示一个水平的参考线
-plt.savefig("image\\single_fit.eps")  # 想要保存的文件名称
+plt.savefig("Single_fit.eps")  # 想要保存的文件名称
 plt.show()

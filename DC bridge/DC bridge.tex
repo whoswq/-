@@ -1,0 +1,163 @@
+\documentclass[a4paper]{ctexart}
+\usepackage[top=2.3cm,bottom=2cm,left=1.7cm,right=1.7cm]{geometry} 
+\usepackage{amsmath} 
+\usepackage{booktabs}
+\usepackage{amsthm}
+\usepackage{longtable} 
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{fontspec}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{threeparttable}
+\def\degree{$^{\circ}$}
+\def\mm{\mathrm{mm}}
+\def\cm{\mathrm{cm}}
+\def\nm{\mathrm{nm}}
+\def\kpa{\mathrm{kpa}}
+\def\V{\mathrm{V}}
+\def\m{\mathrm{m}}
+\def\g{\mathrm{g}}
+\def\Pa{\mathrm{Pa}}
+\title{\textbf{直流电桥测量电阻}}
+\author{王崇斌 1800011716}
+\date{}
+\makeatletter %使\section中的内容左对齐
+\renewcommand{\section}{\@startsection{section}{1}{0mm}
+	{-\baselineskip}{0.5\baselineskip}{\bf\leftline}}
+\makeatother
+\begin{document}
+	\pagestyle{fancy}
+	\lhead{普通物理实验报告} 
+	\chead{}
+	\rhead{}
+	\maketitle
+    \thispagestyle{fancy}
+    \section{\large{数据处理}}
+    \subsection{测量未知电阻的阻值}
+    \par 
+    实验中使用的检流计分度值为$1.2 \times 10^{-6}\;$安/格，内阻为$44\;\Omega$，由此首先可以得到电桥灵敏度的理论公式：
+    $$
+    S=\frac{S_{i} \cdot E}{R_{0}+R_{1}+R_{2}+R_{x}+R_{g}\left(2+\frac{R_{1}}{R_{x}}+\frac{R_{0}}{R_{2}}\right)}
+    $$
+    \par 
+    再根据实验中的数据，将实验测得的灵敏度与理论灵敏度同时列于下表中。
+    \begin{table}[htbp]
+        \centering
+        \caption{测量未知电阻的阻值与电桥灵敏度数据表}
+        \begin{threeparttable}
+        \begin{tabular}{ccccccccc}
+            \toprule[1.5pt]
+                 &  $R_{1}/R_{2}(\Omega/\Omega)$ & $R_{0}(\Omega)$ & $R_{0}^{'}(\Omega)$ & $\Delta n$(格) & $R_{x}(\Omega)$ & $\Delta R_{0}(\Omega)$ & $S_{e}$(格) & $S_{t}$(格)\\
+            \midrule
+            $R_{x1}$ & 500/500 & 48.3(-2)\tnote{*} \; 48.2(+2) & 48.4 & 6.0 & 48.25\tnote{**} & 0.15 & $1.9 \times 10^{3}$ & $2.03 \times 10^{3}$\\
+            \midrule
+            $R_{x2}$ & 50/500  & 3667 & 3697 & 4.8 & 366.7 & 30.0 & $5.9\times 10^{2}$ & $6.66 \times 10^{2}$\\
+            交换$R_{1},R_{2}$\tnote{***} & 500/500 & 366.8 & 365.8 & 4.1 & & 1.0 & $1.5\times 10^{3}$ & $1.63 \times 10^{3}$\\
+                              & 500/500 & 366.6 & 367.6 & 4.5 & 366.7 & 1.0 & $1.6\times 10^3$ & $1.63 \times 10^{3}$\\
+            \midrule
+            $R_{x3}$ & 500/500 & 3987 & 3937 & 4.3 & 3987 & 50 &  $3.4 \times 10^2$ & $5.96 \times 10^{2}$\\
+            \bottomrule[1.5pt]
+        \end{tabular}
+        \begin{tablenotes}
+            \item{*} 这里由于电阻箱的最小分度无法使得检流计中不通过电流，因而采取在平衡位置附近的内插法，括号里的数据是偏离平衡位置的格数。
+            \item {**} 这里的数据是用内插法算出来的，因此多了一位有效数字。
+            \item {***} 这里交换$R_{1},R_{2}$是为了减小电阻本身阻值不标准而引起的误差。
+        \end{tablenotes}      
+    \end{threeparttable}
+    \end{table}
+    \par 
+    我们需要计算上表中测量结果的不确定度，首先考虑不交换$R_{1}, R_{2}$的情形。除了电桥臂电阻本身不确定度对于待测电阻不确定度
+    的贡献之外，还要考虑由于电桥灵敏度引起的误差，考虑观察平衡位置时会产生0.2格的偏差，可以由电桥灵敏度的定义以及实验条件下的
+    电桥灵敏度计算出$\delta R_{x}$:
+    $$
+    \delta R_{x}=\frac{0.2}{S} \cdot R_{x}
+    $$
+    \par 
+    并且由$R_{x}$的计算公式可以得到$\sigma_{R_x}$的合成公式：
+    $$
+    \sigma_{R_{x}}=\left[\left(\frac{\delta R_{x}}{\sqrt{3}}\right)^{2}+\left(\frac{R_{0}}{R_{2}}\right)^{2} \cdot 
+    \sigma_{R_{1}}^{2}+\left(\frac{R_{0} R_{1}}{R_{2}^{2}}\right)^{2} \sigma_{R_{2}}^{2}+\left(\frac{R_{1}}{R_{2}}\right)^{2} 
+    \sigma_{R_{0}}^{2}\right]^{\frac{1}{2}}
+    $$
+    \begin{table}[htbp]
+        \centering
+        \caption{实验室使用的电阻箱允差数据表}
+        \begin{tabular}{ccccc}
+            \toprule[1.5pt]
+            $1k\Omega$ & $100\Omega$ & $10\Omega$ & $1\Omega$ & $0.1\Omega$ \\
+            $\pm 0.1\%$ & $\pm 0.1\%$ & $\pm 0.1\%$ & $\pm 0.5\%$ &$\pm 2\%$ \\
+            \bottomrule[1.5pt]
+        \end{tabular}
+    \end{table}
+    \par 
+    认为$\delta R_{x}$与$R_{0},R_{1},R_{2}$的误差均为极限误差，在转换为标准差时应该除以$\sqrt{3}$。
+    \begin{table}[htbp]
+        \centering
+        \caption{测量未知电阻的不确定度}
+        \begin{tabular}{ccccccccc}
+            \toprule[1.5pt]
+                        & $R_{0}(\Omega)$ & $R_{1}(\Omega)$ & $R_{2}(\Omega)$ & $\sigma_{R_{0}}(\Omega)$ & $\sigma_{R_{1}}(\Omega)$ & $\sigma_{R_{2}}(\Omega)$ & $\frac{\delta R_{x}}{\sqrt{3}}(\Omega)$ & $\sigma_{R_{x}}(\Omega)$ \\
+            \midrule
+            $R_{x_{1}}$ & 48.25 & 500.0 & 500.0 & 0.050 & 0.29 & 0.29 & 0.0051 & 0.064 \\
+            $R_{x_{2}}$ & 3667  & 50.0  & 500.0 & 2.1   & 0.029 & 0.29 &  0.071 & 0.37 \\
+            $R_{x_{3}}$ & 3987  & 500.0 & 500.0 & 2.3   & 0.29 & 0.29 & 1.35 & 4.2\\
+            \bottomrule[1.5pt]
+        \end{tabular}
+    \end{table}
+    \par 
+    下面计算交换桥臂法测量$R_{x2}$电阻的不确定度，容易得到$R_{x2}$的计算公式为：
+    $$
+    R_{x2} = \sqrt{R_{01}\cdot R_{02}} = \sqrt{366.8 \cdot 366.6} = 366.7(\Omega)
+    $$
+    \par 
+    同样可以得到标准差合成公式：
+    $$
+    \sigma_{R_{x2}}=\frac{1}{2} \cdot \sqrt{\frac{R_{01}}{R_{02}} \cdot \sigma_{R_{02}}^{2}+\frac{R_{02}}{R_{01}} \sigma_{R_{01}}^{2} + \frac{4(\delta R_{x2})^{2}}{3}}
+    $$
+    \par 
+    由电阻箱的允差表可以计算出$\sigma_{R_{01}} \approx \sigma_{R_{02}} = 0.40\;\Omega$，$\delta R_{x2} = 0.049$
+    带入数据计算得$\sigma_{R_{x2}} = 0.28\;\Omega$（这里的不确定度主要是由于电阻箱的允差产生的）。\\
+    \subsection{测量条件对于电桥灵敏度的影响}
+    \begin{table}[htbp]
+        \centering
+        \caption{改变测量条件对电桥灵敏度的影响}
+        \begin{tabular}{p{130pt}|p{50pt}p{50pt}p{25pt}p{25pt}p{25pt}p{50pt}p{50pt}}
+            \toprule[1.5pt]
+                    & $R_{0}(\Omega)$ & $R_{0}^{'}(\Omega)$ & $\Delta n$(格) & $R_{x2}(\Omega)$ & $\Delta R_{0}(\Omega)$ & $S_e$(格) & $S_t$(格) \\
+            \midrule
+            $E=4.0\;\mathrm{V},\frac{R_{1}}{R_{2}} = \frac{500}{500},R_{h} = 0\;\Omega$ & 365.9 & 366.9 & 4.5 & 365.9 & 1.0 & $1.6 \times 10^{3}$ & 174 \\
+            $E=2.0\;\mathrm{V},\frac{R_{1}}{R_{2}} = \frac{500}{500},R_{h} = 0\;\Omega$ & 366.0 & 364.0 & 4.5 & 366.0 & 2.0 & $8.2 \times 10^{2}$ & 871 \\
+            $E=4.0\;\mathrm{V},\frac{R_{1}}{R_{2}} = \frac{500}{5000},R_{h} = 0\;\Omega$& $3.66\times 10^{3}$ & $3.71\times 10^{3}$ & 4.5 & 366 & 50 & $3.0\times 10^{2}$ & 343 \\
+            $E=4.0\;\mathrm{V},\frac{R_{1}}{R_{2}} = \frac{500}{500},R_{h} = 2.97\;\mathrm{k}\Omega$&366 & 376 & 5.5 & 366 & 10 & $2.0 \times 10^{2}$ & 237 \\
+            \bottomrule[1.5pt]
+        \end{tabular}
+    \end{table}
+    \par 
+    \;
+    \par 
+    \;
+    \section{\large{思考题}}
+    \par 
+    电源电压大幅度下降。观察电桥灵敏度的表达式，可以看出灵敏度与电源电压成正比，若电源电压大幅下降，必然会导致灵敏度下降，从而增大测量时的$\delta R_{x}$，、
+    使得测量误差增大。
+    \par 
+    电源电压稍有波动。如果在电桥不是严格平衡时，电源电压的波动势必会导致通过检流计的电流波动，在真实的实验过程中，不可能使得电桥严格平衡，因而
+    电压波动引起的检流计指针晃动会增大$\delta R_{x}$，所以会增大测量误差。
+    \par 
+    在测量较低电阻时，导线电阻不可以忽略。这样显然会导致测量的电阻值偏大。
+    \par 
+    检流计零点没有校准。若参考指针的平衡位置来判断检流计中是否有电流通过，那么对于测量没有影响。
+    \par 
+    检流计灵敏度不够高。由电桥灵敏度的表达式可以看出，灵敏度与检流计灵敏度成正比，检流计灵敏度太低必然会增大测量误差。
+    \section{\large{分析与讨论}}
+    \paragraph{电桥灵敏度的理论值与计算值}从前面计算出的理论电桥灵敏度与实验测量值对比可以看出两者还是比较接近的。从公式可以看出，电路中的
+    总电阻对于灵敏度有着明显的影响，若测量较大的电阻，灵敏度有可能很低，此时应该选择灵敏度大的检流计，并适当提高电源电压（也可以考虑使用
+    内阻小的检流计同时使得电桥不对称，但是这时应该注意如果电桥过于不对称有可能会增大计算电阻时的误差）。
+    \paragraph{待测电阻不确定度的主要来源}观察数据表可以看出，在待测电阻较小时，电桥的灵敏度很高，由此引起的相对不确定度很小，误差的主要
+    来源就是桥臂电阻的不确定度，如果可以控制电桥尽可能对称，选取适当大小的桥臂电阻使桥臂的相对不确定度较小，同时不至于S太小，这样就有可能提高
+    测量精确度。此外，在测量小电阻时，连接电路一定要注意减小接触电阻，检查导线情况（实验室中很多导线都有破损或严重的弯折，有可能被氧化或者
+    铜线部分断裂而导致电阻增大，影响测量）。当被测电阻增大时，电桥灵敏度下降很明显，这时由电桥灵敏度引起的不确定度就开始在误差中占有一席之地
+    （因为当桥臂电阻达到一定大小后，其相对不确定度已经固定，因电桥灵敏度引起的不确定度不断增大）。
+\end{document}
